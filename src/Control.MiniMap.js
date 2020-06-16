@@ -44,7 +44,7 @@
         opacity: 0,
         fillOpacity: 0,
       },
-      strings: { hideText: "Hide MiniMap", showText: "Show MiniMap" },
+      strings: { hideText: "Скрыть миникарту", showText: "Показать миникарту" },
       mapOptions: {}, // Allows definition / override of Leaflet map options.
     },
 
@@ -89,6 +89,7 @@
 
       this._miniMap = new L.Map(this._container, mapOptions);
 
+			console.log(this._layer);
       this._layer.addTo(this._miniMap);
 
       // These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
