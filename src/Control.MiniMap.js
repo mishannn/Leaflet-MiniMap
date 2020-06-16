@@ -34,8 +34,8 @@
 			minimized: false,
 			width: 150,
 			height: 150,
-			collapsedWidth: 19,
-			collapsedHeight: 19,
+			collapsedWidth: 22,
+			collapsedHeight: 22,
 			aimingRectOptions: {color: '#ff7800', weight: 1, interactive: false},
 			shadowRectOptions: {color: '#000000', weight: 1, interactive: false, opacity: 0, fillOpacity: 0},
 			strings: {hideText: 'Hide MiniMap', showText: 'Show MiniMap'},
@@ -78,7 +78,7 @@
 
 			this._miniMap = new L.Map(this._container, mapOptions);
 
-			this._miniMap.addLayer(this._layer);
+			this._layer.addTo(this._miniMap);
 
 			// These bools are used to prevent infinite loops of the two maps notifying each other that they've moved.
 			this._mainMapMoving = false;
@@ -119,13 +119,13 @@
 			this._mainMap.off('move', this._onMainMapMoving, this);
 			this._miniMap.off('moveend', this._onMiniMapMoved, this);
 
-			this._miniMap.removeLayer(this._layer);
+			this._layer.removeFrom(this._miniMap);
 		},
 
 		changeLayer: function (layer) {
-			this._miniMap.removeLayer(this._layer);
+			this._layer.removeFrom(this._miniMap);
 			this._layer = layer;
-			this._miniMap.addLayer(this._layer);
+			this._layer.addTo(this._miniMap);
 		},
 
 		_addToggleButton: function () {
